@@ -1,0 +1,8 @@
+applications:
+    - name: teaching-vacancies-prometheus-staging
+  
+      buildpacks:
+        - https://github.com/alphagov/prometheus-buildpack
+  
+      services:
+        - teaching-vacancies-influxdb-staging

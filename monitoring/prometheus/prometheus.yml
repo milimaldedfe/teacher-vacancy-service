@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 10s
+
+scrape_configs:
+- job_name: teaching-vacancies-prometheus-exporter-dfe-teacher-services
+  scheme: https
+  static_configs:
+    - targets: [prometheus-exporter-dfe-teacher-services.london.cloudapps.digital]
+
+alerting:
+  alertmanagers:
+  - scheme: https
+    static_configs:
+    - targets: [teaching-vacancies-alertmanager-staging.london.cloudapps.digital]
+
+rule_files:
+  - alert.rules
