@@ -233,58 +233,40 @@ RSpec.feature 'Hiring staff can edit a draft vacancy' do
         let(:school_group) { create(:school_group) }
         let!(:vacancy) do
           VacancyPresenter.new(build(:vacancy, :complete,
-                                    job_location: job_location,
-                                    job_title: 'Draft vacancy 2',
+                                    job_location: 'at_one_school',
+                                    job_title: 'Draft SchoolGroup vacancy at one school',
                                     school_group: school_group,
                                     working_patterns: ['full_time', 'part_time']))
         end
 
         before do
+          Vacancy.delete_all
           school_group.schools = [school]
           allow(SchoolGroupJobsFeature).to receive(:enabled?).and_return(true)
           stub_hiring_staff_auth(uid: school_group.uid, session_id: SecureRandom.uuid)
           visit new_organisation_job_path
           fill_in_job_location_form_field(vacancy)
           click_on I18n.t('buttons.continue')
-          @vacancy_id = current_path.split('/')[-2] # /organisation/jobs/:job_id/school
         end
 
-        context 'a job at one school' do
-          let(:job_location) { 'at_one_school' }
+        scenario 'does not create a draft vacancy during either job location step' do
+          expect(Vacancy.count).to eq(0)
+        
+          fill_in_school_form_field(school)
+          click_on I18n.t('buttons.continue')
 
-          scenario 'redirects to school step when school step is incomplete' do
-            visit edit_organisation_job_path(id: @vacancy_id)
-
-            expect(page).to have_content(I18n.t('jobs.current_step', step: 1, total: 8))
-            within('h2.govuk-heading-l') do
-              expect(page).to have_content(I18n.t('jobs.job_location'))
-            end
-          end
-
-          scenario 'redirects to job specification step when school step is complete' do
-            fill_in_school_form_field(school)
-            click_on I18n.t('buttons.continue')
-
-            visit edit_organisation_job_path(id: @vacancy_id)
-
-            expect(page).to have_content(I18n.t('jobs.current_step', step: 2, total: 8))
-            within('h2.govuk-heading-l') do
-              expect(page).to have_content(I18n.t('jobs.job_details'))
-            end
-          end
+          expect(Vacancy.count).to eq(0)
         end
 
-        context "a job at school_group's central office" do
-          let(:job_location) { 'central_office' }
+        scenario 'does create a draft vacancy at the job specification step, with correct organisation' do
+          fill_in_school_form_field(school)
+          click_on I18n.t('buttons.continue')
 
-          scenario 'redirects to job specification step when school is incomplete' do
-            visit edit_organisation_job_path(id: @vacancy_id)
+          fill_in_job_specification_form_fields(vacancy)
+          click_on I18n.t('buttons.continue')
 
-            expect(page).to have_content(I18n.t('jobs.current_step', step: 2, total: 8))
-            within('h2.govuk-heading-l') do
-              expect(page).to have_content(I18n.t('jobs.job_details'))
-            end
-          end
+          expect(draft_vacancy.school).to eq(school)
+          # TODO: test trust central office route also
         end
       end
     end
