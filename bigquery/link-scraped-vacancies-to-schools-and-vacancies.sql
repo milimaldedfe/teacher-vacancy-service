@@ -193,6 +193,27 @@ WITH
       AND vacancies_joined_to_schools.publish_on < DATE_ADD(TV_vacancy.publish_on, INTERVAL 14 DAY) )
   SELECT
     vacancies_joined_to_schools.*,
+  IF
+    (LOWER(vacancies_joined_to_schools.title) LIKE '%head%'
+      OR LOWER(vacancies_joined_to_schools.title) LIKE '%ordinat%'
+      OR LOWER(vacancies_joined_to_schools.title) LIKE '%principal%',
+      "leadership",
+    IF
+      ((vacancies_joined_to_schools.title LIKE '%TA%'
+          OR vacancies_joined_to_schools.title LIKE '%TAs%'
+          OR LOWER(vacancies_joined_to_schools.title) LIKE '% assistant%' #picks up teaching assistant, learning support assistant etc.
+          OR LOWER(vacancies_joined_to_schools.title) LIKE '%intervention %')
+        AND LOWER(vacancies_joined_to_schools.title) NOT LIKE '%admin%'
+        AND LOWER(vacancies_joined_to_schools.title) NOT LIKE '%account%'
+        AND LOWER(vacancies_joined_to_schools.title) NOT LIKE '%marketing%'
+        AND LOWER(vacancies_joined_to_schools.title) NOT LIKE '%admission%'
+        AND LOWER(vacancies_joined_to_schools.title) NOT LIKE '%care%',
+        "teaching_assistant",
+      IF
+        (LOWER(vacancies_joined_to_schools.title) LIKE '%teacher%'
+          OR LOWER(vacancies_joined_to_schools.title) LIKE '%lecturer%',
+          "teacher",
+          NULL))) AS vacancy_category,
     vacancy_to_vacancy_matches.vacancy_id
   FROM
     vacancies_joined_to_schools
