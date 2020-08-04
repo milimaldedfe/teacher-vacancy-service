@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'import_polygons'
 
 RSpec.describe ImportPolygons do
   subject { described_class.new(location_type: location_type) }
