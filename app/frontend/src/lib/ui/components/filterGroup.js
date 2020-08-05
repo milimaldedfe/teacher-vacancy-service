@@ -3,15 +3,15 @@ import '../../polyfill/closest.polyfill';
 export const CHECKBOX_CLASS_SELECTOR = 'govuk-checkboxes__input';
 
 window.addEventListener('DOMContentLoaded', () => {
-  Array.from(document.getElementsByClassName('moj-filter__tag')).map((removeButton) => addRemoveFilterEvent(removeButton, submitFormHandler(removeButton)));
+  Array.from(document.getElementsByClassName('moj-filter__tag')).map((removeButton) => addRemoveFilterEvent(removeButton, () => getForm(removeButton).submit()));
 
   const clearButton = document.getElementById('clear-filters');
   if (clearButton) {
-    addRemoveAllFiltersEvent(clearButton, submitFormHandler(clearButton));
+    addRemoveAllFiltersEvent(clearButton, () => getForm(clearButton).submit());
   }
 });
 
-export const submitFormHandler = (el) => () => el.closest('form').submit();
+export const getForm = (el) => el.closest('form');
 
 export const addRemoveFilterEvent = (el, onClear) => {
   el.addEventListener('click', (e) => {
