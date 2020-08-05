@@ -17,7 +17,7 @@
       .govuk-grid-column-one-quarter
         = form_for 'form', url: '/url', html: { method: 'get' } do |f|
           = render partial: 'shared/filter_group', locals: { filters: { :f => f, :title => 'Filter results', :removeButtons => true, :items => [{ :options => subject_options, :title => 'Subjects', :key => 'subjects', :search => true }, { :options => working_pattern_options, :title => 'Working patterns', :key => 'working-patterns', :search => true }]}}
-          = f.govuk_submit 'update filters'
+          = f.govuk_submit 'Apply filters'
 
       .govuk-grid-column-three-quarters
         = render(HiringStaff::VacanciesComponent.new(organisation: @organisation, sort: @sort, selected_type: @selected_type, filters: @filters))
