@@ -25,6 +25,14 @@ namespace :data do
 
   desc 'Import location polygons'
   namespace :location_polygons do
+    task import_all_location_types: :environment do
+      Rails.logger.debug("Running location polygon import task for all location types in #{Rails.env}")
+      ImportPolygons.new(location_type: :regions).call
+      ImportPolygons.new(location_type: :counties).call
+      ImportPolygons.new(location_type: :london_boroughs).call
+      ImportPolygons.new(location_type: :cities).call
+    end
+
     task import_regions: :environment do
       Rails.logger.debug("Running region location polygon import task in #{Rails.env}")
       ImportPolygons.new(location_type: :regions).call
