@@ -3,9 +3,9 @@
 -# = render 'shared/filter_group', f: <FormBuilder form>,
 -#   filters: {
 -#     title: <String>,
--#     removeButtons: <Boolean>,
--#     totalCount: <Integer>,
--#     closeAll: <Boolean>,
+-#     remove_buttons: <Boolean>,
+-#     total_count: <Integer>,
+-#     close_all: <Boolean>,
 -#     :items => [
 -#       { :options => <Array>, :title => <String>, :search => <Boolean>, :key => <String> }
 -#     ]
@@ -18,11 +18,11 @@
         %span.moj-filter__heading-title
           %h2.govuk-heading-s
             = filters[:title]
-        - if filters[:closeAll]
+        - if filters[:close_all]
           %button.govuk-link.govuk-link--no-visited-state{ id: 'close-all-groups' }
             = t('shared.filter_group.close_all_filter_groups')
 
-    - if filters[:totalCount] > 0 && filters[:removeButtons]
+    - if filters[:total_count] > 0 && filters[:remove_buttons]
       .moj-filter__content
         .moj-filter__selected
           .selected-filters__heading{ class: 'govuk-!-margin-bottom-2' }
