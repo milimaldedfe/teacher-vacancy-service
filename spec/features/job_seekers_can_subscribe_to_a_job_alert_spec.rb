@@ -122,7 +122,7 @@ RSpec.feature 'A job seeker can subscribe to a job alert' do
         fill_in 'jobs_search_form[location]', with: 'London'
         check I18n.t('jobs.job_role_options.teacher'), name: 'jobs_search_form[job_roles][]', visible: false
         check I18n.t('jobs.job_role_options.nqt_suitable'), name: 'jobs_search_form[job_roles][]', visible: false
-        check I18n.t('jobs.school_phase_options.secondary'), name: 'jobs_search_form[phases][]', visible: false
+        check I18n.t('jobs.phase_options.secondary'), name: 'jobs_search_form[phases][]', visible: false
         check I18n.t('jobs.working_pattern_options.full_time'),
               name: 'jobs_search_form[working_patterns][]', visible: false
         click_on I18n.t('buttons.search')
