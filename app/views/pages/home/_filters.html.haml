@@ -1,0 +1,7 @@
+%details.govuk-details{ "data-module": "govuk-details" }
+  %summary.govuk-details__summary
+    %span.govuk-details__summary-text
+      Add more filters
+  .start-page-filters
+    = render 'shared/checkbox_group', search: false, f: f, attribute_name: :job_roles, options: subject_options, value_method: :first, text_method: :first, hint_method: :last, small: true
+
