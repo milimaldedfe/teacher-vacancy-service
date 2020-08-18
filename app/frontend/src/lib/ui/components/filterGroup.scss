@@ -1,5 +1,11 @@
 .filter-group__container {
   border-bottom: 1px solid #b1b4b6;
+
+  .filter-group__section-heading {
+    font-size: 1.2rem;
+    padding: 0 0 govuk-spacing(1) 0;
+    color: govuk-colour('white');
+  }
 }
 
 .js-enabled .filters-submit {

@@ -2,6 +2,10 @@
   %summary.govuk-details__summary
     %span.govuk-details__summary-text
       Add more filters
-  .start-page-filters
-    = render 'shared/checkbox_group', search: false, f: f, attribute_name: :job_roles, options: subject_options, value_method: :first, text_method: :first, hint_method: :last, small: true
+  .filter-group__container
+    %h3.filter-group__section-heading{ id: "filter-group-default-heading-[job-roles-change-to-be-index-not-hardcoded]" }
+      = t('jobs.job_roles')
+
+    .checkbox-group__container{ aria: { labelledby: "filter-group-default-heading-[job-roles-change-to-be-index-not-hardcoded]" }, data: { group: "[job-roles-change-to-be-interpolated-not-hardcoded]" } }
+      = render 'shared/checkbox_group', search: false, f: f, attribute_name: :job_roles, options: @jobs_search_form.job_role_options, value_method: :first, text_method: :last, small: true
 
