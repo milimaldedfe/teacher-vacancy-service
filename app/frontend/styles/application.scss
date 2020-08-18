@@ -57,12 +57,26 @@ $govuk-image-url-function: frontend-image-url;
 @import 'components/vacancy';
 @import 'ie';
 
+@import 'components/spikey';
+
 input[type='search'] {
   box-sizing: border-box;
 }
 
 p {
   @include govuk-font(19);
+}
+
+button.govuk-link {
+  border: none;
+  background: none;
+  color: $govuk-link-colour;
+  font-size: 1rem;
+  text-decoration: underline;
+  padding: 0;
+  border-color: none;
+  box-shadow: none;
+  cursor: pointer;
 }
 
 .visually-hidden {

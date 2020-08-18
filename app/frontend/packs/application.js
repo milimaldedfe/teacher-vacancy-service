@@ -23,6 +23,8 @@ import 'src/submitFeedback';
 import 'src/uploadDocuments';
 import 'src/vacancyShow';
 
+import 'src/spikey';
+
 import { initAll } from 'govuk-frontend';
 
 Rails.start();

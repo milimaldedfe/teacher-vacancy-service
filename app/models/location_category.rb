@@ -20,6 +20,7 @@ class LocationCategory
 
     def regions
       Region.where.not(name: OUT_OF_SCOPE_REGIONS)
+            .limit(20)
             .pluck(:name)
     end
 
@@ -36,8 +37,33 @@ class LocationCategory
             .where.not(regions: { name: OUT_OF_SCOPE_REGIONS + [LONDON_REGION] })
             .where.not(county: OUT_OF_SCOPE_COUNTIES)
             .group(:county)
+            .order('COUNT(*) DESC')
             .order(:county)
+            .limit(20)
             .pluck(:county)
+    end
+
+    def cities_primary
+      School.joins(:region)
+            .where.not(regions: { name: OUT_OF_SCOPE_REGIONS + [LONDON_REGION] })
+            .where.not(county: OUT_OF_SCOPE_COUNTIES)
+            .group(:town)
+            .order('COUNT(*) DESC')
+            .order(:town)
+            .limit(20)
+            .pluck(:town)
+    end
+
+    def cities_secondary
+      School.joins(:region)
+            .where.not(regions: { name: OUT_OF_SCOPE_REGIONS + [LONDON_REGION] })
+            .where.not(county: OUT_OF_SCOPE_COUNTIES)
+            .group(:town)
+            .order('COUNT(*) DESC')
+            .order(:town)
+            .offset(20)
+            .limit(20)
+            .pluck(:town)
     end
   end
 end

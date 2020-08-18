@@ -1,0 +1,43 @@
+.govuk-grid-row
+  .govuk-grid-column-one-half
+    %h3.govuk-heading-m= "Choose an area to see vacancies"
+    %img{ src: 'browse.png', usemap: "#browseMap" }
+
+  .govuk_grid-column-one-half
+    %h3.govuk-heading-m= "We have #{get_vacancy_count} vacancies listed across"
+    %ul.govuk-list
+      %li
+        %a.govuk-link{ href: '/' }= "North East"
+      %li
+        %a.govuk-link{ href: '/' }= "North West"
+      %li
+        %a.govuk-link{ href: '/' }= "Yorkshire and the Humber"
+      %li
+        %a.govuk-link{ href: '/' }= "East Midlands"
+      %li
+        %a.govuk-link{ href: '/' }= "West Midlands"
+      %li
+        %a.govuk-link{ href: '/' }= "East of England"
+      %li
+        %a.govuk-link{ href: '/' }= "London"
+      %li
+        %a.govuk-link{ href: '/' }= "South East"
+      %li
+        %a.govuk-link{ href: '/' }= "South Central"
+      %li
+        %a.govuk-link{ href: '/' }= "South West"
+      %li
+        %a.govuk-link{ href: '/' }= "Wales"
+
+%map#browseMap{ name: "browseMap" }
+  %area{ tabindex: '-1', shape: "poly", title: "North East", alt: "North East", href: "/", class: "jsTipMap", coords: "108,0,120,0,134,12,141,32,147,47,147,65,141,66,134,53,121,52,121,60,115,60,107,53,106,26,102,26,100,13" }
+  %area{ tabindex: '-1', shape: "poly", title: "North West", alt: "North West", href: "/", coords: "100,165,120,146,121,133,133,133,134,119,128,107,106,90,106,72,120,66,120,59,106,48,106,27,101,27,93,34,73,59,67,73,67,87,79,104,93,105,93,112,87,114,86,146,93,166" }
+  %area{ tabindex: '-1', shape: "poly", title: "Yorkshire and the Humber", alt: "Yorkshire and the Humber", href: "/", coords: "120,52,120,63,107,73,107,93,127,107,141,107,141,113,148,120,154,119,158,113,167,126,175,126,187,112,186,86,174,73,154,65,141,65,134,53" }
+  %area{ tabindex: '-1', shape: "poly", title: "East Midlands", alt: "East Midlands", href: "/", coords: "195,113,182,114,171,126,160,113,155,114,151,120,139,106,128,106,127,120,140,130,141,137,135,141,128,154,128,158,134,161,134,184,154,203,154,213,166,212,167,202,181,193,181,174,188,173,189,180,200,179,201,162,207,158,207,140" }
+  %area{ tabindex: '-1', shape: "poly", title: "West Midlands", alt: "West Midlands", href: "/", coords: "134,126,141,127,140,139,135,142,134,153,129,157,134,160,134,181,147,193,147,200,140,201,141,220,132,227,123,227,117,233,107,226,94,213,93,199,87,194,94,188,88,186,87,166,97,166,114,147,122,133,133,133" }
+  %area{ tabindex: '-1', shape: "poly", title: "East of England", alt: "East of England", href: "/", coords: "188,174,188,180,201,180,201,168,214,161,249,160,260,174,260,186,255,212,235,233,235,239,215,239,215,229,202,225,197,221,195,226,181,226,176,218,180,209,175,203,181,197,181,175" }
+  %area{ tabindex: '-1', shape: "poly", title: "London", alt: "London", href: "/", coords: "198,221,205,226,214,227,215,246,202,248,201,260,194,262,183,247,174,247,174,235,181,226,191,226" }
+  %area{ tabindex: '-1', shape: "poly", title: "South East", alt: "South East", href: "/", coords: "201,248,198,259,187,248,181,248,181,253,188,256,188,264,175,275,175,287,213,288,242,274,255,261,255,246" }
+  %area{ tabindex: '-1', shape: "poly", title: "South Central", alt: "South Central", href: "/", coords: "175,193,166,201,165,211,156,213,154,201,141,201,141,227,147,234,141,241,141,254,147,257,140,262,141,272,127,274,128,280,134,283,127,288,128,300,167,299,174,287,175,279,188,267,189,254,180,247,174,246,175,233,181,235,181,220,177,217,180,210,176,203,182,196" }
+  %area{ tabindex: '-1', shape: "poly", title: "South West", alt: "South West", href: "/", coords: "140,220,147,226,147,238,139,240,140,251,147,256,138,264,140,272,127,275,133,284,126,290,126,299,87,298,81,315,73,322,58,321,53,315,19,339,13,339,0,332,0,320,19,301,40,274,53,260,81,261,87,265,94,254,107,240,108,228,117,232,124,227" }
+  %area{ tabindex: '-1', shape: "poly", title: "Wales", alt: "Wales", href: "/", coords: "92,251,107,240,106,220,93,209,93,201,87,198,93,191,87,182,87,168,94,163,86,147,62,147,53,140,33,140,41,164,33,174,34,182,54,183,54,197,35,207,12,219,12,234,19,249,34,249,44,235,46,247,59,246,63,240,67,252" }

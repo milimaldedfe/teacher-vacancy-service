@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  root 'pages#home'
+  root 'pages#home', defaults: { component: 'SearchComponent', page: 'search' }
 
   get 'check' => 'application#check'
   get 'sitemap' => 'sitemap#show', format: 'xml'
 
   get '/pages/*id' => 'pages#show', as: :page, format: false
+
+  get '/search', to: 'pages#home', as: 'search', defaults: { component: 'SearchComponent', page: 'search' }
+  get '/browse', to: 'pages#home', as: 'browse', defaults: { component: 'BrowseComponent', page: 'browse' }
 
   resources :updates, only: %i[index]
 

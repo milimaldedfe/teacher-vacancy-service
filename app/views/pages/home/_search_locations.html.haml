@@ -1,0 +1,45 @@
+.govuk-grid-row
+  .govuk-grid-column-full
+    %h3.govuk-heading-m= 'We have vacancies listed in these cities'
+
+    %ul.govuk-list.four-column-list
+      - @cities_primary.each do |county|
+        %li
+          = link_to county, location_category_path(county), class: 'govuk-link'
+
+    %button.govuk-link#see-more{ class: 'govuk-!-margin-bottom-6' }
+      %i.fa.fa-caret-down{ class: 'govuk-!-margin-right-1' }
+      = 'See more cities'
+
+    %ul.govuk-list.four-column-list.govuk-visually-hidden#more-links
+      - @cities_secondary.each do |county|
+        %li
+          = link_to county, location_category_path(county), class: 'govuk-link'
+
+    %h3.govuk-heading-m= 'We have vacancies listed in these counties'
+
+    %ul.govuk-list.four-column-list
+      - @counties.each do |county|
+        %li
+          = link_to county, location_category_path(county), class: 'govuk-link'
+
+    %h3.govuk-heading-m= 'We have vacancies listed for these subjects'
+
+    %ul.govuk-list.four-column-list
+      %li
+        %a.govuk-link{ href: '/' }= 'Mathematics'
+      %li
+        %a.govuk-link{ href: '/' }= 'English'
+      %li
+        %a.govuk-link{ href: '/' }= 'French'
+      %li
+        %a.govuk-link{ href: '/' }= 'Physics'
+      %li
+        %a.govuk-link{ href: '/' }= 'Biology'
+      %li
+        %a.govuk-link{ href: '/' }= 'Spanish'
+      %li
+        %a.govuk-link{ href: '/' }= 'History'
+      %li
+        %a.govuk-link{ href: '/' }= 'Geography'
+

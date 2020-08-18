@@ -1,0 +1,12 @@
+.govuk-grid-column-full   
+  .govuk-tabs
+    %ul.govuk-tabs__list.tab-list
+
+      %li.govuk-tabs__list-item{ class: selected_class('search') }
+        %a{ href: '/search' }= 'Search for Vacancies'
+
+      %li.govuk-tabs__list-item{ class: selected_class('browse') }
+        %a{ href: '/browse' }= 'Browse Vacancies'
+
+    %section.govuk-tabs__panel    
+      = render(eval(@selected_component).new(selected_page: @selected_page))

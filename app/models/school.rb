@@ -1,6 +1,6 @@
 require 'breasal'
 
-class School < Organisation
+class School < ApplicationRecord
   include Auditor::Model
 
   belongs_to :school_type, optional: false

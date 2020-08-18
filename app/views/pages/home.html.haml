@@ -1,13 +1,17 @@
-= content_for :page_title_prefix, t('jobs.heading')
-
 .govuk-grid-row
   .govuk-grid-column-two-thirds
-    .search_panel= render 'pages/home/search'
+    %h2.govuk-heading-l= 'Teaching Vacancies'
+    %p= 'Introduction to service, mention keywords.... Ah\'ll learn thi tell this summat for nowt bobbar tintintin ah\'l\' thee a thick ear will \'e \'eckerslike. Breadcake. Dahn t\'coil oil ah\'ll box thi ears shu\' thi gob shurrup. Tha daft apeth. Aye big girl\'s blouse.'
+    %p= 'Nay lad what\'s that when it\'s at ooam tha what ah\'ll gi\' thee a thick ear bloomin\' \'eck. Bobbar tell this summat for nowt tha knows god\'s own county nobbut a lad cack-handed be reet.'
+
   .govuk-grid-column-one-third
     .signin
       - if ReadOnlyFeature.enabled?
         = render 'pages/home/read_only'
       - else
         = render 'pages/home/signin'
+
+  = render(HomeComponent.new(selected_page: @selected_page, selected_component: @selected_component))
+
 .govuk-grid-row
-  .govuk-grid-column-full= render 'pages/home/location_categories'
+  .govuk-grid-column-full= render "pages/home/#{@selected_page}_locations"
