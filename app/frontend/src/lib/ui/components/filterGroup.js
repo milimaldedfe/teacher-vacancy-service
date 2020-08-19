@@ -6,6 +6,9 @@ export const CHECKBOX_CLASS_SELECTOR = 'govuk-checkboxes__input';
 window.addEventListener('DOMContentLoaded', () => init('filter-group__container', 'moj-filter__tag', 'clear-filters-button', 'close-all-groups'));
 
 export const init = (groupContainerSelector, removeButtonSelector, clearButtonSelector, closeButtonSelector) => {
+  // Prevent automatic submit on service start page
+  if (window.location.pathname === '/') { return; }
+
   Array.from(document.getElementsByClassName(removeButtonSelector)).map((removeButton) => filterGroup.addRemoveFilterEvent(removeButton, () => getSubmitButton(removeButton).click()));
 
   const clearButton = document.getElementById(clearButtonSelector);
