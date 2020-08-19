@@ -1,5 +1,6 @@
 import filterGroup, {
   init,
+  isFormAutoSubmitEnabled,
   addRemoveFilterEvent,
   addRemoveAllFiltersEvent,
   removeFilterHandler,
@@ -33,19 +34,32 @@ describe('filterGroup', () => {
       filterGroup.addRemoveAllFiltersEvent = jest.fn();
       const addRemoveAllFiltersEventMock = jest.spyOn(filterGroup, 'addRemoveAllFiltersEvent');
 
-      document.body.innerHTML = `<div>
+      document.body.innerHTML = `<form data-auto-submit="true"><div>
 <button class="moj-filter__tag">remove</button>
 <button class="moj-filter__tag">remove</button>
 <button id="clear-filters-button">remove</button>
 <button id="close-all-groups">remove</button>
 </div>
 <div class="filter-group__container"></div>
-<div class="filter-group__container"></div>`;
+<div class="filter-group__container"></div>
+</form>`;
 
       init('filter-group__container', 'moj-filter__tag', 'clear-filters-button', 'close-all-groups');
 
       expect(addRemoveFilterEventMock).toHaveBeenCalledTimes(2);
       expect(addRemoveAllFiltersEventMock).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('isFormAutoSubmitEnabled', () => {
+    test('returns true if the auto submit data attribute has been added to the form', () => {
+      document.body.innerHTML = '<form data-auto-submit="true"><div class="filter-group"></div></form>';
+      expect(isFormAutoSubmitEnabled('filter-group')).toBe('true');
+    });
+
+    test('returns true if the auto submit data attribute has been added to the form', () => {
+      document.body.innerHTML = '<form><div class="filter-group"></div></form>';
+      expect(isFormAutoSubmitEnabled('filter-group')).toBeFalsy();
     });
   });
 

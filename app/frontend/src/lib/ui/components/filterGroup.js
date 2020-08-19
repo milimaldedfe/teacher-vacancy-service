@@ -6,8 +6,7 @@ export const CHECKBOX_CLASS_SELECTOR = 'govuk-checkboxes__input';
 window.addEventListener('DOMContentLoaded', () => init('filter-group__container', 'moj-filter__tag', 'clear-filters-button', 'close-all-groups'));
 
 export const init = (groupContainerSelector, removeButtonSelector, clearButtonSelector, closeButtonSelector) => {
-  // Prevent automatic submit on service start page
-  if (window.location.pathname === '/') { return; }
+  if (!isFormAutoSubmitEnabled(groupContainerSelector)) { return; }
 
   Array.from(document.getElementsByClassName(removeButtonSelector)).map((removeButton) => filterGroup.addRemoveFilterEvent(removeButton, () => getSubmitButton(removeButton).click()));
 
@@ -36,6 +35,11 @@ export const init = (groupContainerSelector, removeButtonSelector, clearButtonSe
       }
     });
   }
+};
+
+export const isFormAutoSubmitEnabled = (groupContainerSelector) => {
+  const form = document.getElementsByClassName(groupContainerSelector)[0].closest('form');
+  return form && form.dataset.autoSubmit;
 };
 
 export const closeAllSectionsHandler = (e) => {
