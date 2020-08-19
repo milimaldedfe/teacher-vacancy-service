@@ -100,7 +100,7 @@ class ExportTablesToBigQuery
       @bigquery_data[c.name] = data
     end
 
-    if table.column_names.include?('geolocation')
+    if table.column_names.include?('geolocation') && record.geolocation
       @bigquery_data['geolocation_x'] = record.geolocation.x
       @bigquery_data['geolocation_y'] = record.geolocation.y
     end
