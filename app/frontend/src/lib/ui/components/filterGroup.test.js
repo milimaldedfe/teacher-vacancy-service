@@ -38,12 +38,12 @@ describe('filterGroup', () => {
 <button class="moj-filter__tag">remove</button>
 <button class="moj-filter__tag">remove</button>
 <button id="clear-filters-button">remove</button>
-<button id="close-all-groups">remove</button>
+<button id="toggle-all-groups">remove</button>
 </div>
 <div class="filter-group__container"></div>
 <div class="filter-group__container"></div>`;
 
-      init('filter-group__container', 'moj-filter__tag', 'clear-filters-button', 'close-all-groups, mobile-filters-button');
+      init('filter-group__container', 'moj-filter__tag', 'clear-filters-button', 'toggle-all-groups, mobile-filters-button');
 
       expect(addRemoveFilterEventMock).toHaveBeenCalledTimes(2);
       expect(addRemoveAllFiltersEventMock).toHaveBeenCalledTimes(1);
@@ -219,30 +219,32 @@ describe('filterGroup', () => {
 
   describe('closeAllSectionsHandler', () => {
     test('removes the class selector from all filter groups that makes them visible', () => {
-      document.body.innerHTML = `<div class="govuk-accordion__section govuk-accordion__section--expanded"></div>
+      document.body.innerHTML = `<button id="toggle-all-groups">Close all</button>
+      <div class="govuk-accordion__section govuk-accordion__section--expanded"></div>
       <div class="govuk-accordion__section govuk-accordion__section--expanded"></div>
       <div class="govuk-accordion__section"></div>`;
 
-      const event = { preventDefault: jest.fn(), target: { innerText: 'Close all' } };
-      const dontFollowLinkMock = jest.spyOn(event, 'preventDefault');
+      // const event = { target: { innerText: 'Close all' } };
+      // const dontFollowLinkMock = jest.spyOn(event, 'preventDefault');
 
-      closeAllSectionsHandler(event);
+      const closeAllButton = document.getElementById('toggle-all-groups');
 
-      expect(dontFollowLinkMock).toHaveBeenCalled();
+      closeAllSectionsHandler(closeAllButton);
+
+      // expect(dontFollowLinkMock).toHaveBeenCalled();
       expect(document.getElementsByClassName('govuk-accordion__section--expanded').length).toEqual(0);
     });
 
     test('adds the class selector from all filter groups that makes them visible', () => {
-      document.body.innerHTML = `<div class="govuk-accordion__section govuk-accordion__section--expanded"></div>
+      document.body.innerHTML = `<button id="toggle-all-groups">Open all</button>
+      <div class="govuk-accordion__section govuk-accordion__section--expanded"></div>
       <div class="govuk-accordion__section govuk-accordion__section--expanded"></div>
       <div class="govuk-accordion__section"></div>`;
 
-      const event = { preventDefault: jest.fn(), target: { innerText: 'Open all' } };
-      const dontFollowLinkMock = jest.spyOn(event, 'preventDefault');
+      const closeAllButton = document.getElementById('toggle-all-groups');
 
-      closeAllSectionsHandler(event);
+      closeAllSectionsHandler(closeAllButton);
 
-      expect(dontFollowLinkMock).toHaveBeenCalled();
       expect(document.getElementsByClassName('govuk-accordion__section--expanded').length).toEqual(3);
     });
   });

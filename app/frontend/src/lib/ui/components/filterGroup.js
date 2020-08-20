@@ -3,9 +3,9 @@ import 'classlist-polyfill';
 
 export const CHECKBOX_CLASS_SELECTOR = 'govuk-checkboxes__input';
 
-window.addEventListener('DOMContentLoaded', () => init('filter-group__container', 'moj-filter__tag', 'clear-filters-button', 'close-all-groups', 'mobile-filters-button'));
+window.addEventListener('DOMContentLoaded', () => init('filter-group__container', 'moj-filter__tag', 'clear-filters-button', 'toggle-all-groups', 'mobile-filters-button'));
 
-export const init = (groupContainerSelector, removeButtonSelector, clearButtonSelector, closeButtonSelector, mobileFiltersButtonSelector) => {
+export const init = (groupContainerSelector, removeButtonSelector, clearButtonSelector, toggleButtonSelector, mobileFiltersButtonSelector) => {
   Array.from(document.getElementsByClassName(removeButtonSelector)).map((removeButton) => filterGroup.addRemoveFilterEvent(removeButton, () => getSubmitButton(removeButton).click()));
 
   const clearButton = document.getElementById(clearButtonSelector);
@@ -15,13 +15,11 @@ export const init = (groupContainerSelector, removeButtonSelector, clearButtonSe
 
   addFilterChangeEvent(document.getElementsByClassName(groupContainerSelector));
 
-  if (document.getElementById(closeButtonSelector)) {
-    if (document.getElementById(closeButtonSelector).innerText === 'Close all' && document.getElementsByClassName('govuk-accordion__section--expanded').length === 0) {
-      document.getElementById(closeButtonSelector).innerText = 'Open all';
-    } else if (document.getElementById(closeButtonSelector).innerText === 'Open all' && document.getElementsByClassName('govuk-accordion__section--expanded').length > 0) {
-      document.getElementById(closeButtonSelector).innerText = 'Close all';
-    }
-    document.getElementById(closeButtonSelector).addEventListener('click', closeAllSectionsHandler);
+  if (document.getElementById(toggleButtonSelector)) {
+    closeAllSectionsHandler(document.getElementById(toggleButtonSelector));
+    document.getElementById(toggleButtonSelector).addEventListener('click', () => {
+      closeAllSectionsHandler(document.getElementById(toggleButtonSelector));
+    });
   }
 
   const toggleButton = document.getElementById('toggle-filters-sidebar');
@@ -52,14 +50,13 @@ export const showMobileFilters = (element) => {
   element.classList.toggle('filters--show-mobile');
 };
 
-export const closeAllSectionsHandler = (e) => {
-  e.preventDefault();
-  if (e.target.innerText === 'Close all') {
+export const closeAllSectionsHandler = (el) => {
+  if (el.innerHTML === 'Close all') {
     Array.from(document.getElementsByClassName('govuk-accordion__section')).map((section) => section.classList.remove('govuk-accordion__section--expanded'));
-    e.target.innerText = 'Open all';
-  } else if (e.target.innerText === 'Open all') {
+    el.innerHTML = 'Open all';
+  } else if (el.innerHTML === 'Open all') {
     Array.from(document.getElementsByClassName('govuk-accordion__section')).map((section) => section.classList.add('govuk-accordion__section--expanded'));
-    e.target.innerText = 'Close all';
+    el.innerHTML = 'Close all';
   }
 };
 
