@@ -15,6 +15,22 @@ module DFESignIn
       perform_request('/users/approvers', page, APPROVERS_PAGE_SIZE)
     end
 
+    def invite_someone_to_service
+      token = generate_jwt_token
+      auth_string = "Bearer #{token}"
+      request_params = {
+        sourceId: rand(1000),
+        given_name: "David",
+        family_name: "Mears",
+        email: "example@hotmail.co.uk",
+        userRedirect: "https://teaching-vacancies.service.gov.uk/",
+        organisation: "21E117E7-DF74-4B96-92F3-D883C399E959" # the id of the organisation in DfE Sign In. I derived this from the auth_hash json. This is Weydon
+      }
+
+      response = HTTP.auth(auth_string).post("#{DFE_SIGN_IN_URL}/services/#{DFE_SIGN_IN_SERVICE_ID}/invitations",
+                                             json: request_params)
+    end
+
   private
 
     def perform_request(endpoint, page, page_size)
