@@ -788,61 +788,58 @@ en:
     website: 'Trust website'
     school_visits_heading: 'Arranging a visit to %{school}'
   subscriptions:
+    back_to_search_results: 'Return to your search results'
     benefits:
       title: Subscribers
       list:
         - get an email when new jobs match their search
         - can unsubscribe at any time
         - receive no more than 1 email a day
-    link:
-      text: 'Receive a job alert'
-      help_text: 'whenever a job matching this search is published'
-      no_search_results_html: 'Or <a href="%{link_href}" id="job-alert-link-search" class="govuk-link">get notified</a> when a job like this gets listed'
-    intro: 'We’ll email you details of any new jobs that match the following search criteria:'
-    new:
-      page_description: Sign up for a job alert
-    info: You can unsubscribe at any time using the link at the bottom of any email you receive for this job alert.
-    location_radius_text: Within %{radius} miles of %{location}
-    location_category_text: In %{location}
-    reference: 'for'
-    next_steps: >-
-      You’ll receive an email every morning with any new job that’s been listed that matches your search criteria.
     confirmation:
       header: 'Your email subscription has started'
-      receipt_confirmation: We have sent a confirmation email to %{email}.
-      next_step: 'What happens next'
-      reference: 'Your reference: %{reference}'
-      unsubscribe: "You can unsubscribe by following the link at the bottom of these emails."
+      body: We sent an email confirmation to 
       next_step_details: 'We’ll email you details of any new jobs that match the following search criteria:'
+      next_step: 'What happens next'
+      receipt_confirmation: We sent a confirmation email to %{email}.
+      unsubscribe: "You can unsubscribe by following the link at the bottom of these emails."
     deletion:
-      title: Subscription deleted
-      header: Your email subscription has been deleted
-      confirmation: You will no longer receive updates for this alert.
       confirmation_with_reference: You will no longer receive updates for your '%{reference}' alert.
+      confirmation: You will no longer receive updates for this alert.
+      header: Your email subscription has been deleted
       resubscribe_html: If you unsubscribed accidentally, you can %{link}.
       resubscribe_link_text: resubscribe here
-    back_to_search_results: 'Return to your search results'
+      title: Subscription deleted
     email:
-      unsubscribe_text_html: "You can unsubscribe by following the link at the bottom of these emails."
-      unsubscribe_link_text: "Unsubscribe here"
       confirmation:
-        subject: "Teaching Vacancies job alert confirmation for '%{reference}'"
+        expiry_text_html: "Your job alert subscription will end on %{date}."
         heading: "You have subscribed to a job alert for '%{reference}'."
         subheading: 'We’ll email you details of any new jobs that match the following search criteria:'
-        expiry_text_html: "Your job alert subscription will end on %{date}."
+        subject: "Teaching Vacancies job alert confirmation for '%{reference}'"
+      unsubscribe_text_html: "You can unsubscribe by following the link at the bottom of these emails."
+      unsubscribe_link_text: "Unsubscribe here"
       your_feedback: >-
         Teaching Vacancies is a free job-listing service from the Department for Education. It helps
         schools to save money on recruitment and you to take the next step in your career.
         [Your feedback](https://teaching-vacancies.service.gov.uk/feedback/new) will help
         us improve the service.
-    manage: Manage your subscription
-    unsubscribe: Unsubscribe
-    labels:
-      email_html: Email address (<span class="text-red">Required</span>)
-      reference_html: Your reference (<span class="text-red">Required</span>)
     hints:
       email: Enter your email address. We'll only use it to send you job alerts.
       reference: This text will appear in the subject line of emails for this job alert subscription. Feel free to change it.
+    info: You can unsubscribe at any time using the link at the bottom of any email you receive for this job alert.
+    intro: 'We’ll email you details of any new jobs that match the following search criteria:'
+    labels:
+      email_html: Email address (<span class="text-red">Required</span>)
+      reference_html: Your reference (<span class="text-red">Required</span>)
+    link:
+      help_text: 'whenever a job matching this search is published'
+      no_search_results_html: 'Or <a href="%{link_href}" id="job-alert-link-search" class="govuk-link">get notified</a> when a job like this gets listed'
+      text: 'Receive a job alert'
+    location_radius_text: Within %{radius} miles of %{location}
+    location_category_text: In %{location}
+    manage: Manage your subscription
+    new:
+      page_description: Sign up for a job alert
+    unsubscribe: Unsubscribe
   job_alerts:
     confirmation:
       email:
