@@ -844,7 +844,9 @@ en:
       text: 'Receive a job alert'
     location_radius_text: Within %{radius} miles of %{location}
     location_category_text: In %{location}
-    manage: Manage your subscription
+    manage:
+      intro: 'You currently receive an alert for any new jobs that match the following criteria:'
+      title: Manage your job alert
     new:
       page_description: Subscribe to job alerts
     next_steps: >-

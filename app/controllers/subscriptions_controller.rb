@@ -26,6 +26,11 @@ class SubscriptionsController < ApplicationController
     render :new
   end
 
+  def show
+    subscription = Subscription.find(params[:id])
+    @subscription = SubscriptionPresenter.new(subscription)
+  end
+
   def unsubscribe
     token = ParameterSanitiser.call(params).require(:subscription_id)
     @subscription = Subscription.find_and_verify_by_token(token)
