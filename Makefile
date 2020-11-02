@@ -1,11 +1,11 @@
 repository=dfedigital/teaching-vacancies
 
 monitoring-plan: ## Validate monitoring changes
-		TF_WORKSPACE=monitoring terraform init -upgrade=true -input=false terraform/monitoring \
-		&& bin/run-in-env -t /config -v -o tf_subshell -- terraform plan -input=false terraform/monitoring
+	terraform init -upgrade=true -input=false terraform/monitoring \
+		&& bin/run-in-env -t /config -o tf_subshell -- terraform plan -input=false terraform/monitoring
 
 monitoring-apply: ## Apply monitoring changes
-		TF_WORKSPACE=monitoring terraform init -upgrade=true -input=false terraform/monitoring \
+	terraform init -upgrade=true -input=false terraform/monitoring \
 		&& bin/run-in-env -t /config -o tf_subshell -- terraform apply -input=false -auto-approve terraform/monitoring
 
 .PHONY: local

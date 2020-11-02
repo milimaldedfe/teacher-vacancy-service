@@ -19,6 +19,10 @@ variable paas_exporter_username {}
 
 variable paas_exporter_password {}
 
+variable name {
+  default = "teaching-vacancies"
+}
+
 variable grafana_admin_password {
   default = "APassword"
 }
