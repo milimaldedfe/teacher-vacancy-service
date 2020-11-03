@@ -87,6 +87,7 @@ review-destroy: init-terraform
 		$(if $(CONFIRM_DESTROY), , $(error Can only run with CONFIRM_DESTROY))
 		terraform plan -var-file terraform/workspace-variables/review.tfvars -destroy -out=destroy-$(env).plan terraform/app
 		terraform apply "destroy-$(env).plan"
+		terraform workspace select default && terraform workspace delete $(env)
 
 .PHONY: print-env
 print-env:
