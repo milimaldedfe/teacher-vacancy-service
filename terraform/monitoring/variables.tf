@@ -19,7 +19,7 @@ variable paas_exporter_username {}
 
 variable paas_exporter_password {}
 
-variable name {
+variable monitoring_instance_name {
   default = "teaching-vacancies"
 }
 

@@ -14,7 +14,7 @@
 module prometheus_all {
   source = "git::https://github.com/DFE-Digital/bat-platform-building-blocks.git//terraform/modules/prometheus_all?ref=monitoring-terraform-0_13-tv"
 
-  name                    = var.name
+  monitoring_instance_name                    = var.monitoring_instance_name
   #enabled_modules = ["paas_prometheus_exporter", "prometheus", "grafana", "alertmanager"]
   # enabled_modules = ["influxdb"]
   enabled_modules = ["paas_prometheus_exporter", "prometheus", "alertmanager", "influxdb", "grafana"]
