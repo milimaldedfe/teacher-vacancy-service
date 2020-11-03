@@ -23,17 +23,9 @@ variable monitoring_instance_name {
   default = "teaching-vacancies"
 }
 
-variable grafana_admin_password {
-  default = "APassword"
-}
-
-variable grafana_google_client_id {
-  default = ""
-}
-
-variable grafana_google_client_secret {
-  default = ""
-}
+variable grafana_admin_password { default = "APassword" }
+variable grafana_google_client_id { default = "" }
+variable grafana_google_client_secret { default = "" }
 
 variable monitoring_env {
   default = "prod"
@@ -49,4 +41,13 @@ locals {
   paas_password         = var.paas_password != "" ? var.paas_password : null
   paas_sso_passcode     = var.paas_sso_passcode != "" ? var.paas_sso_passcode : null
   paas_user             = var.paas_username != "" ? var.paas_username : null
+  grafana_json_dashboards = [
+    file("${path.module}/config/paas_dashboard.json")
+  ]
+  grafana_config = {
+    google_client_id     = var.grafana_google_client_id
+    google_client_secret = var.grafana_google_client_secret
+    grafana_admin_password = var.grafana_admin_password
+    grafana_json_dashboards = local.grafana_json_dashboards
+  }
 }

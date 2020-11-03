@@ -32,12 +32,7 @@ module prometheus_all {
     PASSWORD     = var.paas_exporter_password
   }
 
-  grafana_config = {
-    dashboard_directory  = "${path.module}/grafana_dashboards"
-    google_client_id     = var.grafana_google_client_id
-    google_client_secret = var.grafana_google_client_secret
-  }
-  grafana_admin_password = var.grafana_admin_password
+  grafana_config = local.grafana_config
 
   alertmanager_config = file("${path.module}/config/alert-manager.yml")
   alert_rules         = file("${path.module}/config/alert.rules")
