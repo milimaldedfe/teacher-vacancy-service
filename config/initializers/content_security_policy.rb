@@ -11,7 +11,8 @@ Rails.application.config.content_security_policy do |policy|
   policy.object_src  :none
   policy.script_src  :self, 'https://cdnjs.cloudflare.com', 'https://cdn.rollbar.com',
                      'https://www.googletagmanager.com', 'https://maps.googleapis.com'
-  policy.style_src   :self, 'https://cdnjs.cloudflare.com', 'https://fonts.googleapis.com'
+  # Google Maps embed will not work without 'unsafe-inline' styles
+  policy.style_src   :self, 'https://cdnjs.cloudflare.com', 'https://fonts.googleapis.com', :unsafe_inline
   # Allow using webpack-dev-server in development
   policy.connect_src :self, :https, 'http://localhost:3035', 'ws://localhost:3035' if Rails.env.development?
 
